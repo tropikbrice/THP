@@ -10,6 +10,7 @@ require 'nokogiri'
 require 'open-uri'
 require "google_drive"
 require "pry"
+require 'gmail'
 
 class Scraping
 	#class de fonctions permettant de realiser du scraping des mairies de france
@@ -101,7 +102,7 @@ class Drive
 		# le hash est sous cette forme {nom_mairie:email_mairie}
 		i=2
 		#binding.pry
-		tt.each do |element_du_tab_est_hash|
+		tab.each do |element_du_tab_est_hash|
 			element_du_tab_est_hash.each do |k,v|
 				onglet1[i,1] = k
 				onglet1[i,2] = v
@@ -114,6 +115,23 @@ class Drive
 	end
 
 end
+####################################################################################
+####################################################################################
+####################################################################################
+#classe de fonctions concernant envoi gmail
+class Sendmail
+
+	#login sur compte gmail, tjs penser à faire un logout enfin de programme
+	def login_gmail(gmail)
+		load "secret.rb"
+		usr = Username
+		pwd = Password
+		@gmail ||= Gmail.connect(usr, pwd)
+	end
+
+end
+
+
 
 ####################################################################################
 ####################################################################################
@@ -138,7 +156,16 @@ session = drive23.login_drive(nil)
 
 #on remplit le fichier excel sheet du drive par les emails et noms de mairie
 excel = "townhall_file"
-binding.pry
 drive23.get_the_name_and_email_and_put_it_in_spreadsheet(session,excel, townhall_list)
 
 
+#####################################
+binding.pry
+
+gmail23 = Sendmail.new()
+
+#on se logg sur gmail
+gmail = gmail23.login_gmail(nil)
+
+#penser à se deconnecter de gmail
+#gmail.logout
