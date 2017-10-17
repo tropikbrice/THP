@@ -28,14 +28,14 @@ class Scraping
 		page = Nokogiri::HTML(open(page_url))
 
 		#recuperation de l'email en "parsant" le html via XPATH
-		email = page.xpath('//td[@class="style27"]/p[@class="Style22"]')
+		email_pos = page.xpath('//td[@class="style27"]/p[@class="Style22"]')
 
 		#afin de gerer les index des adresses vides on fait un ||= "" pour le retour de find_index
-		index_email = email2.text.split("\u00A0").find_index{|x| x.include?("@")}
+		index_email = email_pos.text.split("\u00A0").find_index{|x| x.include?("@")}
 		index_email ||= 0
 
-		email3= email2.text.split("\u00A0")[index_email]
-		return email3
+		email= email_pos.text.split("\u00A0")[index_email]
+		return email
 	end
 
 	#récupère toutes les url de villes du departement
@@ -107,6 +107,8 @@ end
 page_url = "http://annuaire-des-mairies.com/creuse.html"
 
 scrap23 = Scraping.new(page_url)
+
+binding.pry
 
 townhall_list = scrap23.get_the_email_of_a_townhall_from_its_webpage(page_url)
 
