@@ -24,8 +24,8 @@ class Scraping
 	#récupère l'adresse email à partir de l'url d'une mairie
 	#pour plus de details sur la construction des fonctions :
 	#cf fichier rte_mairie.rb
-	def get_the_email_of_a_townhall_from_its_webpage(@page_url)
-		page = Nokogiri::HTML(open(@page_url))
+	def get_the_email_of_a_townhall_from_its_webpage(page_url)
+		page = Nokogiri::HTML(open(page_url))
 
 		#recuperation de l'email en "parsant" le html via XPATH
 		email = page.xpath('//td[@class="style27"]/p[@class="Style22"]')
@@ -40,8 +40,8 @@ class Scraping
 
 	#récupère toutes les url de villes du departement
 	#en retournant un hash contenant url pour chaque ville
-	def get_all_the_urls_of_department_townhalls(@page_url)
-		page = Nokogiri::HTML(open(@page_url))
+	def get_all_the_urls_of_department_townhalls(page_url)
+		page = Nokogiri::HTML(open(page_url))
 
 		url = page.xpath('//a[@class="lientxt"]')
 
@@ -56,16 +56,16 @@ class Scraping
 
 	#retourne un tableau de hash contenant les emails/nom_mairie
 	#un hash est defini ainsi {cle=nom_mairie , valeur = email_mairie}
-	def get_email_name(@page_url)
+	def get_email_name(page_url)
 
 		townhall_list = []
-		get_all_the_urls_of_val_doise_townhalls(@page_url).each do |x|
+		get_all_the_urls_of_department_townhalls(page_url).each do |x|
 			#il y avait une erreur de mail non renseigne , vu grace aux instructions ci dessous
 			#donc on doit traiter les emails vides : ok fait ds la def de la fonction cidessus
 			# puts "--------"
 			#puts x[:url]
 
-			email_ville=get_the_email_of_a_townhal_from_its_webpage( x[:url])
+			email_ville=get_the_email_of_a_townhall_from_its_webpage( x[:url])
 			#puts x[:url]
 
 			townhall_list << { x[:name] => email_ville }
@@ -104,6 +104,9 @@ class Scraping
 end
 
 #execution du programme
+page_url = "http://annuaire-des-mairies.com/creuse.html"
 
-scrap23 = scraping.new
+scrap23 = Scraping.new(page_url)
+
+townhall_list = scrap23.get_the_email_of_a_townhall_from_its_webpage(page_url)
 
