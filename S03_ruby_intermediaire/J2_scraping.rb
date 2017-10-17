@@ -112,7 +112,18 @@ class Drive
 		end
 		#on envoie les donnees au sheet drive :
 		onglet1.save
+		return onglet1
 	end
+
+	#fonction qui recupere juste le 1er ongler d un spreadsheet (pour pouvoir faire test)
+	def get_spreadsheet(session, excel)
+		#on recupere le fichier de notre drive
+		file = session.spreadsheet_by_title(excel)
+
+		#je me positionne dans le 1er onglet de mon fichier spreadsheet drive (excel drive)
+		return onglet1 = file.worksheets[0]
+	end
+
 
 end
 ####################################################################################
@@ -121,12 +132,40 @@ end
 #classe de fonctions concernant envoi gmail
 class Sendmail
 
+	#penser a activer le parametre autoriser application moins securise de gmail:
+	# https://myaccount.google.com/lesssecureapps?pli=1
+
 	#login sur compte gmail, tjs penser à faire un logout enfin de programme
 	def login_gmail(gmail)
 		load "secret.rb"
 		usr = Username
 		pwd = Password
-		@gmail ||= Gmail.connect(usr, pwd)
+		@gmail ||= Gmail.connect!(usr, pwd)
+	end
+
+	#fonction qui envoie un email depuis une session gmail en fct d'un spreadsheet drive avec nom en col A et email en col B
+	def send_email_to_line( _session_gmail,_nom,_email)
+		
+		_session_gmail do |gmail|
+			#gmail.logged_in?
+			#on essaie
+			gmail.deliver do
+				to  _email   #"aliceulbert@gmail.com"
+
+				subject "Hello #{_nom} : having fun in Puerto Rico!"
+
+				text_part do
+					body "Text of plaintext message."
+				end
+
+				html_part do					
+					content_type 'text/html; charset=UTF-8'
+					body "<p>Text of <em>html</em> message.</p>"
+				end
+				#add_file "/path/to/some_image.jpg"
+			end
+
+		end		
 	end
 
 end
@@ -152,11 +191,12 @@ townhall_list = scrap23.get_email_name(page_url)
 #####################################
 drive23 = Drive.new()
 # on se log sur drive, et on recupere le sheet
-session = drive23.login_drive(nil)
+session_drive = drive23.login_drive(nil)
 
 #on remplit le fichier excel sheet du drive par les emails et noms de mairie
 excel = "townhall_file"
-drive23.get_the_name_and_email_and_put_it_in_spreadsheet(session,excel, townhall_list)
+excel = drive23.get_the_name_and_email_and_put_it_in_spreadsheet(session_drive,excel, townhall_list)
+
 
 
 #####################################
@@ -165,7 +205,24 @@ binding.pry
 gmail23 = Sendmail.new()
 
 #on se logg sur gmail
-gmail = gmail23.login_gmail(nil)
+session_gmail = gmail23.login_gmail(nil)
+
+#on fait des tests
+excel = "test"
+onglet_excel = drive23.get_spreadsheet(session_drive, excel)
+
+gmail23.send_email_to_line(onglet_excel, session_gmail)
+
+
+
+
+#on va pouvoir boucler ainsui :
+
+(2..onglet_excel.num_rows).each do |row|
+	nom = onglet_excel[row,1]
+	email = onglet_excel[row,2]
+	gmail23.send_email_to_line(session_gmail,nom,email)
+end
 
 #penser à se deconnecter de gmail
 #gmail.logout
