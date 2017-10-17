@@ -73,44 +73,72 @@ class Scraping
 		end
 		return townhall_list
 	end
+end
 
+####################################################################################
+####################################################################################
+####################################################################################
+#classe de fonctions concernant google drive
+class Drive
 
-	# #enregistrement dans un spreadsheet
-	# def login_drive(session)
-	# 	@session ||= GoogleDrive::Session.from_config("client_secret.json")
-	# end
+	#enregistrement dans un spreadsheet
+	def login_drive(session)
+		@session ||= GoogleDrive::Session.from_config("client_secret.json")
+	end
 
-	# # #tab est un tableau car la fonction de scrapp retourne un tableau de hashs
-	# #tab= get_email_hash()
-	# def get_the_name_and_email_and_put_it_in_spreadsheet(fichier_mairie, tab)
-	# 	#je me positionne dans le 1er onglet de mon fichier spreadsheet drive (excel drive)
-	# 	onglet1 = fichier_mairie.worksheets[0]
+	#tab est un tableau car la fonction de scrapp retourne un tableau de hashs
+	#tab= get_email_hash()
+	def get_the_name_and_email_and_put_it_in_spreadsheet(session, excel, tab)
 
-	# 	# on demarre
-	# 	# i à 2 car la 1ere ligne est la ligne qui contient les noms de colonne , i va de 2 à taille du tableau de hash soit 185+2=187
-	# 	i=2
-	# 	#binding.pry
-	# 	tab.each do |element_du_tab_est_hash|
-	# 		onglet1[i,1] = element_du_tab_est_hash[:name]
+		#on recupere le fichier mairie de notre drive
+		townhall_file = session.spreadsheet_by_title(excel)
 
-	# 		onglet1[i,2] = element_du_tab_est_hash[:email]
+		#je me positionne dans le 1er onglet de mon fichier spreadsheet drive (excel drive)
+		onglet1 = townhall_file.worksheets[0]
 
-	# 		#incrementation des lignes "i" en dehors des boucles d'insertion des valeurs
-	# 		i += 1
-	# 	end
-
-	# 	onglet1.save
-	# end
+		# on demarre
+		# i à 2 car la 1ere ligne est la ligne qui contient les noms de colonne , i va de 2 à taille du tableau de hash soit 185+2=187
+		# le hash est sous cette forme {nom_mairie:email_mairie}
+		i=2
+		#binding.pry
+		tt.each do |element_du_tab_est_hash|
+			element_du_tab_est_hash.each do |k,v|
+				onglet1[i,1] = k
+				onglet1[i,2] = v
+			end
+			#incrementation des lignes "i" en dehors des boucles d'insertion des valeurs
+			i += 1
+		end
+		#on envoie les donnees au sheet drive :
+		onglet1.save
+	end
 
 end
+
+####################################################################################
+####################################################################################
+####################################################################################
 
 #execution du programme
 page_url = "http://annuaire-des-mairies.com/creuse.html"
 
 scrap23 = Scraping.new(page_url)
 
+#affichage des url des mairies du dpt
+url_list = scrap23.get_all_the_urls_of_department_townhalls(page_url)
+
+#recup des noms et emails des mairies
+townhall_list = scrap23.get_email_name(page_url)
+
+
+#####################################
+drive23 = Drive.new()
+# on se log sur drive, et on recupere le sheet
+session = drive23.login_drive(nil)
+
+#on remplit le fichier excel sheet du drive par les emails et noms de mairie
+excel = "townhall_file"
 binding.pry
+drive23.get_the_name_and_email_and_put_it_in_spreadsheet(session,excel, townhall_list)
 
-townhall_list = scrap23.get_the_email_of_a_townhall_from_its_webpage(page_url)
 
-#tt=scrap23.get_the_email_of_a_townhall_from_its_webpage(page_url)
