@@ -144,23 +144,30 @@ class Sendmail
 	end
 
 	#fonction qui envoie un email depuis une session gmail en fct d'un spreadsheet drive avec nom en col A et email en col B
-	def send_email_to_line( _session_gmail,_nom,_email)
-		
-		_session_gmail do |gmail|
+	def send_email_to_line( _session_gmail,_nom,_email,usr,pwd)
+
+		Gmail.connect!(usr, pwd) do |gmail|		
+		#_session_gmail do |gmail|
 			#gmail.logged_in?
 			#on essaie
 			gmail.deliver do
 				to  _email   #"aliceulbert@gmail.com"
 
-				subject "Hello #{_nom} : having fun in Puerto Rico!"
+				subject "Hello #{_nom} : having fun in Medellin !"
 
+				#si editeur compatible, il enverra le html sinon le text
 				text_part do
 					body "Text of plaintext message."
 				end
 
+				#version html
 				html_part do					
 					content_type 'text/html; charset=UTF-8'
-					body "<p>Text of <em>html</em> message.</p>"
+					body "
+						<p>Text of <em>html</em> message.</p>
+						<p></p>
+						<a href='https://www.google.fr/search?biw=1088&bih=518&tbm=isch&sa=1&q=tiendas+de+ropa+en+medellin&oq=tienda+en+medellin&gs_l=psy-ab.3.0.0i7i30k1l10.24133.25156.0.26599.6.6.0.0.0.0.136.483.5j1.6.0....0...1.1.64.psy-ab..0.6.479....0.Jew_5q8rlfE'>clique ici querida</a>
+					"
 				end
 				#add_file "/path/to/some_image.jpg"
 			end
@@ -200,7 +207,7 @@ excel = drive23.get_the_name_and_email_and_put_it_in_spreadsheet(session_drive,e
 
 
 #####################################
-binding.pry
+#binding.pry
 
 gmail23 = Sendmail.new()
 
@@ -211,17 +218,17 @@ session_gmail = gmail23.login_gmail(nil)
 excel = "test"
 onglet_excel = drive23.get_spreadsheet(session_drive, excel)
 
-gmail23.send_email_to_line(onglet_excel, session_gmail)
 
+#on va pouvoir boucler ainsi :
 
-
-
-#on va pouvoir boucler ainsui :
+load "secret.rb"
+usr = Username
+pwd = Password
 
 (2..onglet_excel.num_rows).each do |row|
 	nom = onglet_excel[row,1]
 	email = onglet_excel[row,2]
-	gmail23.send_email_to_line(session_gmail,nom,email)
+	gmail23.send_email_to_line(session_gmail,nom,email,usr,pwd)
 end
 
 #penser à se deconnecter de gmail
