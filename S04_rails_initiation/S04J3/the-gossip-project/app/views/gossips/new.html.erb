@@ -1,0 +1,7 @@
+<h1>Write your gossips</h1>
+<p></p>
+
+<%= form_for @gossip , url: gossips_path do |f| %>
+	<%= render partial: "form", locals: {f: f} %>
+	<%= f.submit "Create", class: "btn btn-primary" %>
+<% end %>

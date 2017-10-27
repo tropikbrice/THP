@@ -1,13 +1,28 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-	<meta charset="UTF-8">
-	<title>Document</title>
-</head>
-<body>
+<h1>Listing gossips</h1>
+ 
+<p><%= link_to 'Create new gossip', new_gossip_path %></p>
+<p></p>
 
-	<h1>naula & brice : on finira ce week end !</h1>
-	<h2> you already know why !!</h2>
-	
-</body>
-</html>
+<table>
+	<tr>
+		<th>N°</th>
+		<th>Created at</th>
+		<th>Author</th>
+		<th>Content</th>
+	</tr>
+
+	<% @gossips.each do |gossip| %>
+		<tr>
+		<td><%= gossip.id %></td>
+		<td><%= gossip.created_at.to_formatted_s(:db) %></td>
+		<td><%= gossip.anonymous_author %></td>
+		<td><%= gossip.content %></td>
+		<td><%= link_to 'Show', gossip_path(gossip) %></td>
+		<td><%= link_to 'Edit', edit_gossip_path(gossip) %></td>
+		<td><%= link_to 'Delete', gossip_path(gossip), method: :delete,
+														data: { confirm: "Are you sure ?" }%></td>
+		</tr>
+	<% end %>
+</table>
+<p></p>
+<p><%= link_to 'Create new gossip', new_gossip_path %></p>

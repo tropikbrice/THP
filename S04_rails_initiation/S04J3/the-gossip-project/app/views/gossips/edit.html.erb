@@ -1,0 +1,7 @@
+<h1>Edit your gossips</h1>
+<p></p>
+
+<%= form_for @gossip , url: gossip_path(@gossip), method: :put do |f| %>
+	<%= render partial: "form", locals: {f: f} %>
+	<%= f.submit "Edit" , class: "btn btn-primary" %>
+<% end %>

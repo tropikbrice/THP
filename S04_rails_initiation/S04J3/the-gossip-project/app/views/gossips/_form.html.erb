@@ -1,0 +1,7 @@
+<p class="field">
+	<%= f.text_field :anonymous_author , placeholder: "user here ..." %>
+</p>
+<p class="field">
+	<%= f.hidden_field :date, :value => Time.now %>
+	<%= f.text_area :content , placeholder: "your gossips" , autofocus: true%>
+</p>
