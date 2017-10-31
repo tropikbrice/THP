@@ -13,7 +13,7 @@ class GossipsController < ApplicationController
 
 	def show
 		@gossip = Gossip.find(params[:id])
-		puts "id = #{@gossip.id} "
+		#puts "id = #{@gossip.id} "
 		# puts "your gossip : #{@gossip}"
 	end
 
@@ -28,8 +28,7 @@ class GossipsController < ApplicationController
 			redirect_to @gossip
 		else
 			render "Edit"
-		end
-		
+		end		
 	end
 
 	def destroy
