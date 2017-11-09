@@ -1,5 +1,5 @@
 #cree app:
-rails new the-gossip-project
+rails new thread_eval_proc-gossip-project
 
 #cree le modele
 rails generate model Gossip
