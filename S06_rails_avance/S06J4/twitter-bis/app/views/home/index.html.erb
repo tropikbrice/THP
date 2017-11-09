@@ -1,6 +1,5 @@
 <h1>Formulaire Twitter</h1>
 
-<%= form_tag "/", method: "post"  %>
+<%= form_tag "/", method: "get"  %>
 	<%= text_field_tag( :tweet , 'tweet max 160', options={:maxlength => 160})  %>
-	<%= hidden_field_tag :params_tweet , "tweet" %>
 	<%= submit_tag(value = "Tweet") %>
