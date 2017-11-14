@@ -3,6 +3,6 @@ Rails.application.routes.draw do
 
 	root 'intuits#index'
 
-	get 'intuits/private'
+	# get 'intuits/private'
 
 end

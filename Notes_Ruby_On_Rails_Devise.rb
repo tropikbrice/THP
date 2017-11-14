@@ -109,3 +109,15 @@ config.action_mailer.default_url_options = { host: 'local.dev', port: 3000}
 # dans devise.rb changer le 
 	config.mailer_sender = 'please-change-me-at-config-initializers-devise@example.com'
 
+
+
+# modifier le application_controller.rb pr accepter les nouveaux champs
+class ApplicationController < ActionController::Base
+	protect_from_forgery with: :exception
+
+	before_action :configure_devise_parameters , if: :devise_controller?
+
+	def configure_devise_parameters
+		devise_parameter_sanitizer.permit(:sign_up) {|u| u.permit(:username , :email , :password, :password_confirmation, :phone)}
+	end
+end

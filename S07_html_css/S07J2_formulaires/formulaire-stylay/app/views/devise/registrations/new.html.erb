@@ -1,4 +1,48 @@
-<h2>Sign up</h2>
+<body>
+
+  <div class= "page_div">
+
+  <!-- image logo-->
+  <%= image_tag "logo_intuit_grey.png" %>
+   
+   <!-- sign in --> 
+  <p>Already have an Intuit account?</p>
+  <%=link_to "I forgot my password or my User ID", edit_user_registration_path %>
+
+     <!-- sign in  <div class="sign_in_button">
+    <button>Sign in</button>
+    </div>
+  -->
+
+  <%= button_to "Sign in", user_session_path %>
+
+
+  <!-- rectangle formulaire -->
+
+  <div class="form_content">
+  <!-- logos et liens en haut du form -->
+    <div class=" line">
+    <%= image_tag "logo_turbotax.png", class:"turbo" %>
+     
+    <%= image_tag "logo_quickbooks.png", class:"quick" %>
+     
+    <%= image_tag "logo_mint.png", class:"mint" %>
+     
+    </div>
+  
+  
+      <!-- le trait de séparation-->
+  
+    <h1 class= "one_account">
+      One Account.
+      Everything Intuit.
+    </h1>
+    <p class= "one_account">
+    One Account.
+    Everything Intuit.
+    </p>
+
+<h2>Sign up - NEw</h2>
 
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
   <%= devise_error_messages! %>
@@ -8,7 +52,7 @@
     <%= f.email_field :email, autofocus: true %>
   </div>
 
-  <div class="phone">
+  <div class="field">
     <%= f.label 'Phone (recommended)' %><br />
     <%= f.email_field :phone, autofocus: true %>
   </div>
@@ -31,4 +75,24 @@
   </div>
 <% end %>
 
-<%= render "devise/shared/links" %>
+<%#= render "devise/shared/links" %>
+
+
+</body>
+
+  <footer>
+  <div> 
+  <%= image_tag "logo_intuit_grey.png" %>
+  </div>
+
+  <!-- liens legaux-->
+  <%=link_to "Legal", root_path %>
+  <%=link_to "Privacy", root_path %>
+  <%=link_to "Security", root_path %>
+
+  <p class="text_footer">
+  © 2017 Intuit, Inc. All rights reserved. Intuit, QuickBooks, QB, TurboTax, ProConnect and Mint are registered trademarks of Intuit Inc.
+  Terms and conditions, features, support, pricing, and service options subject to change without notice.
+  </p>
+
+</footer>
