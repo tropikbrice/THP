@@ -1,2 +1,12 @@
-<h1>Intuits#index</h1>
-<p>Find me in app/views/intuits/index.html.erb</p>
+<h1>THP session 2 - S07J2 - Brice</h1>
+
+<h2>Mint.com sign_up like !</h2>
+
+<p> la suite ci dessous :</p>
+<p>
+	<% if user_signed_in? %>
+		<%= link_to 'Se deconnecter' , destroy_user_session_path, method: :delete %>
+	<% else %>
+		<%= link_to 'Se connecter' , new_user_registration_path %>	
+	<% end %>
+</p>

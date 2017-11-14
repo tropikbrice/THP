@@ -30,7 +30,7 @@ rails g devise:install
 	# goto localhost:1080
 	# envoyer mail : smtp://localhost:1025
 
-	# Mailer
+	# Mailer dans development.rb
 	config.action_mailer.delivery_method = :smtp
 	config.action_mailer.smtp_settings = {
 		adress: 'localhost',
@@ -99,4 +99,13 @@ end
 <p>sa ki ni ?</p>
 #  ajout a la fin de dans application.rb
 config.action_mailer.default_url_options = { host: 'local.dev', port: 3000}
+
+############################################
+
+ #on place les alertes comme préconisées par rails dans application.html.erb - body :
+	<p class="notice"><%= notice %></p>
+	<p class="alert"><%= alert %></p>
+
+# dans devise.rb changer le 
+	config.mailer_sender = 'please-change-me-at-config-initializers-devise@example.com'
 
