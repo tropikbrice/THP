@@ -36,13 +36,14 @@ rails g devise:install
 		adress: 'localhost',
 		port: 1025
 	}
-	config.action_mailer.default_url_options = { host: 'local.dev', port: 3000}
+	# config.action_mailer.default_url_options = { host: 'local.dev', port: 3000}
+	config.action_mailer.default_url_options = { host: 'localhost', port: 3000}
 
 	#adresse mail dev
 	local.dev:3000 
 ####################################################
 
-#on cree un controller simple pr avoir des routes 
+#on cree un controller simple (naming au pluriel pour les controller!!!) pr avoir des routes 
 rails g controller Home index private
 
 # on genere les views pr devise comme le suggere
@@ -52,7 +53,7 @@ rails g devise:views
 # place au model des utilisateurs : c devise qui genere le modele
 rails g devise User
 	# si on veut rajouter des comportements les ajouter au user.rb
-	ex : :confirmable => rajouter des info supp, cf les info en commentaire dans le fichier de migration
+	ex: :confirmable => rajouter des info supp, cf les info en commentaire dans le fichier de migration
 #on fait migration :
 rails db:migrate
 
