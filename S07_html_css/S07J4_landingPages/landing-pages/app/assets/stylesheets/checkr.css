@@ -13,6 +13,24 @@ section{
 	font-family: "Palatino","Goudy Bookletter 1911", sans-serif;
 	color: white; 
 }
+#header_part1 {
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	justify-content: center;
+}
+#n_nav1part1 {
+}
+.liniv1{
+	display: inline-block;
+}
+/*afficher les li au survol*/
+ul ul {
+	display:none;
+}
+li:hover ul.niv2 {
+	display:block;
+}
 
 #d_bloc_part1 {
 	display: flex;

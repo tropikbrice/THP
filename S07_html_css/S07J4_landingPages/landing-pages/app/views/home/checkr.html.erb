@@ -1,57 +1,75 @@
 <!DOCTYPE html>
 <html>
-	<head>
-		<title>checkr</title>
-		<%= csrf_meta_tags %>
+<head>
+	<title>checkr</title>
+	<%= csrf_meta_tags %>
 
-		<%= stylesheet_link_tag    'checkr', media: 'all', 'data-turbolinks-track': 'reload' %>
-		<%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
-	</head>
+	<%= stylesheet_link_tag    'checkr', media: 'all', 'data-turbolinks-track': 'reload' %>
+	<%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+</head>
 
-	<body>
-		<div id="d_bloc_page">
-			<section id="s_part1">
-				<header id="header_part1">
-					<div id="d_image_part1">
-						<%= image_tag('checkr/logo.png') %>
-					</div>
-					<nav>
-						<ul>
-							<li><a href="https://checkr.com/product/">Product</a>
-								<ul>
-									<li><a class="" href="https://checkr.com/product/">Overview</a></li>
-									<li><a class="" href="https://checkr.com/product/screenings/">Screenings</a></li>
-									<li><a class="" href="https://checkr.com/product/compliance/">Compliance</a></li>
-									<li><a class="" href="https://checkr.com/product/security/">Security</a></li>
-								</ul>
-							</li>
-							<li><a href="https://checkr.com/industries/">Industries <b class="caret"></b></a>
-							</li>
-							<li>
-								
-							</li>
-						</ul>
-						
-					</nav>
-				</header>
-				<div id="d_bloc_part1">
-					<div id="d_text_part1">
-						<h1>HIRE GREAT PEOPLE. FASTER.</h1>
-
-
-						<p>Checkr provides&nbsp;modern and compliant background checks for global enterprises and startups.</p>
-
-						<p>EXPLORE NOW</p>
-					</div>
-					<div id="d_video_part1">
-						<video src="https://checkr.com/wp-content/themes/checkr/assets/video/Checkr_Hero.webm" autoplay="true" preload="auto" loop="true" poster="checkr/Checkr_Hero_poster.png">
-						</video>
-					</div>
+<body>
+	<div id="d_bloc_page">
+		<section id="s_part1">
+			<header id="header_part1">
+				<div id="d_image_part1">
+					<%= image_tag('checkr/logo.png') %>
 				</div>
-			</section>
-			<section id="s_part2">
-				<p>More Than 10,000 Businesses Trust Checkr for Their Background Screenings</p>				
-			</section>
-		</div>
-	</body>
+				<nav id="n_nav1part1">
+					<ul>
+						<li class="liniv1"><a href="https://checkr.com/product/">Product</a>
+							<ul class="niv2">
+								<li><a class="" href="https://checkr.com/product/">Overview</a></li>
+								<li><a class="" href="https://checkr.com/product/screenings/">Screenings</a></li>
+								<li><a class="" href="https://checkr.com/product/compliance/">Compliance</a></li>
+								<li><a class="" href="https://checkr.com/product/security/">Security</a></li>
+							</ul>
+						</li>
+						<li class="liniv1"><a href="https://checkr.com/industries/">Industries</a>
+							<ul class="niv2">
+								<li ><a class="" href="https://checkr.com/industries/">Overview</a></li>
+								<li><a class="" href="https://checkr.com/industries/contact-centers/">Contact Centers</a></li>
+								<li><a class="" href="https://checkr.com/industries/financial-services/">Financial Services</a></li>
+								<li><a class="" href="https://checkr.com/industries/retail-hospitality/">Retail &#038; Hospitality</a></li>
+								<li><a class="" href="https://checkr.com/industries/healthcare/">Healthcare</a></li>
+								<li><a class="" href="https://checkr.com/industries/nonprofit/">Non Profit</a></li>
+								<li><a class="" href="https://checkr.com/industries/staffing/">Staffing</a></li>
+								<li><a class="" href="https://checkr.com/industries/on-demand-economy/">On-Demand Economy</a></li>
+								<li><a class="" href="https://checkr.com/industries/manufacturing/">Manufacturing</a></li>
+								<li><a class="" href="https://checkr.com/industries/software-and-technology/">Software &#038; Technology</a></li>
+								<li><a class="" href="https://checkr.com/industries/small-business/">Small Business</a></li>
+								<li><a class="" href="https://checkr.com/industries/p2p-marketplaces/">P2P Marketplaces</a></li>
+							</ul>
+						</li>
+						<li class="liniv1"><a href="https://checkr.com/resources/">Resources</a>
+							<ul class="niv2">
+								<li><a class="" href="https://checkr.com/resources/">Overview</a></li>
+								<li><a class="" href="https://checkr.com/resources/white-papers/">Guides &#038; White Papers</a></li>
+								<li><a class="" href="https://checkr.com/resources/faq/">FAQ</a></li>
+							</ul>
+						</li>
+					</ul>
+
+				</nav>
+			</header>
+			<div id="d_bloc_part1">
+				<div id="d_text_part1">
+					<h1>HIRE GREAT PEOPLE. FASTER.</h1>
+
+
+					<p>Checkr provides&nbsp;modern and compliant background checks for global enterprises and startups.</p>
+
+					<p>EXPLORE NOW</p>
+				</div>
+				<div id="d_video_part1">
+					<video src="https://checkr.com/wp-content/themes/checkr/assets/video/Checkr_Hero.webm" autoplay="true" preload="auto" loop="true" poster="checkr/Checkr_Hero_poster.png">
+					</video>
+				</div>
+			</div>
+		</section>
+		<section id="s_part2">
+			<p>More Than 10,000 Businesses Trust Checkr for Their Background Screenings</p>				
+		</section>
+	</div>
+</body>
 </html>
