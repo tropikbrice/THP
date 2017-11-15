@@ -1,0 +1,27 @@
+body {
+}
+#d_bloc_page{
+}
+section{
+	padding: 0px 200px;
+}
+
+#s_part1 {
+	background:linear-gradient(0deg,rgba(60, 121, 187, 0.6),rgba(60, 121, 187, 0.6)),url('https://checkr.com/wp-content/uploads/2015/10/checkr_header_industries-1-1200x320.jpg');
+	background-repeat: no-repeat;
+	background-size: cover;
+	font-family: "Palatino","Goudy Bookletter 1911", sans-serif;
+	color: white; 
+}
+
+#d_bloc_part1 {
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	justify-content: center;
+}
+
+#d_text_part1 {
+	display: flex;
+	flex-direction: column;
+}
