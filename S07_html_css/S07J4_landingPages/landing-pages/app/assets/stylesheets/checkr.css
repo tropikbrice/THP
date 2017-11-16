@@ -1,11 +1,12 @@
 body {
 }
 #d_bloc_page{
+	width: 100%;
+	margin: auto;
 }
 section{
 	padding: 0px 200px;
 }
-
 #s_part1 {
 	background:linear-gradient(0deg,rgba(60, 121, 187, 0.6),rgba(60, 121, 187, 0.6)),url('https://checkr.com/wp-content/uploads/2015/10/checkr_header_industries-1-1200x320.jpg');
 	background-repeat: no-repeat;
@@ -17,19 +18,24 @@ section{
 	display: flex;
 	flex-direction: row;
 	flex-wrap: wrap;
-	justify-content: center;
+	justify-content: space-between;
 }
-#n_nav1part1 {
+/****************************************menu deroulant*/
+a {
+	text-decoration:none;
+	color: white;
 }
-.liniv1{
-	display: inline-block;
+.liniv1 , .liniv2 {
+	list-style:none;
 }
-/*afficher les li au survol*/
+/*afficher les li au survol:ne pas afficher le 2e ul*/
 ul ul {
-	display:none;
+	/*display:none;*/
 }
-li:hover ul.niv2 {
-	display:block;
+/****************************************************************/
+#d_login {
+	flex:3;
+	text-align: right;
 }
 
 #d_bloc_part1 {
@@ -38,8 +44,28 @@ li:hover ul.niv2 {
 	flex-wrap: wrap;
 	justify-content: center;
 }
+#d_video_part1 {
+	flex:2;
+}
 
 #d_text_part1 {
 	display: flex;
 	flex-direction: column;
 }
+/***********************************FIN SECTION***********************************/
+#d_part2 {
+	display: flex;
+	flex-direction: row;
+	flex-wrap: nowrap;
+	align-items: center;
+	justify-content: space-between;
+}
+h3 { 
+	text-align: center;
+	font-size: 1.7em;
+	font-family: "Palatino","Goudy Bookletter 1911", sans-serif;
+}
+.d_img_part2 {
+	width: 100%;
+}
+/***********************************FIN SECTION***********************************/
