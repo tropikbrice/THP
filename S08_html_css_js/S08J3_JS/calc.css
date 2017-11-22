@@ -1,0 +1,65 @@
+@media (min-width: 391px) {
+    .calculator {
+        width: 390px;
+    }
+}
+@font-face {
+	font-family: 'eurostile-extended-black';
+	src: url('fonts_eurostile_extended_black.ttf');
+}
+h1 {
+	text-align: center;
+}
+#container {
+	height: 500px;
+	width: 700px;
+	display: flex;
+	align-items: center;
+	justify-content: space-around;
+}
+#calculator {
+	background-color: #0A8;
+	font-size: 35px;
+	display: flex;
+/*	margin: 90px 90px;*/
+	flex-wrap: wrap;
+	justify-content: center;
+	align-content: center;	
+/*	box-sizing: border-box;*/
+	width: 100%;
+}
+#brand {
+	font-family: eurostile-extended-black , sans-serif;
+	color: white;
+	text-align: right;
+/*	display: inline-block;*/
+}
+#screen{
+	background-color: #EFD;
+	color: #000;
+	height: 40px;
+	line-height: 40px;
+	border: none;
+	font-size: 60px;
+	padding: 25px;
+	width: 100%;
+	direction: rtl; /*sens de lecture de right to left*/
+	white-space: nowrap; /* interdiction de passer à la ligne */
+}
+.keys {
+	background-color: #037;
+	color: white ;
+	border: solid;
+	text-align: center;
+	padding: 7px 12px;
+	font-weight: bold;
+	box-shadow: 0 2px 5px rgba(0 , 0 ,0, 0.8);
+	cursor: default;
+	text-shadow: 0 -1px 1px white;
+	margin: 5px 5px;
+	width: 20%;
+	box-sizing: border-box;
+}
+#c-ce {
+	background-color: #FF0000FF;
+}
