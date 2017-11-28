@@ -58,6 +58,6 @@ rails g controller Maps index
 #     <div id="map"></div>
 # dans la view index.html
 
-bon j'ai un peu saute bcp de choses, en gros :
-Asset was not declared to be precompiled in production.
-Add `Rails.application.config.assets.precompile += %w( maps.js )` to `config/initializers/assets.rb` and restart your server
+# bon j'ai un peu saute bcp de choses, en gros :
+# Asset was not declared to be precompiled in production.
+# Add `Rails.application.config.assets.precompile += %w( maps.js )` to `config/initializers/assets.rb` and restart your server

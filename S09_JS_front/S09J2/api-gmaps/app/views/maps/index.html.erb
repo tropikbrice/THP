@@ -1,27 +1,17 @@
 <h1>Handle Google maps API by @Brice</h1>
 
-<%= form_tag "/", method: "get"  %>
+<%= form_tag("/", method: "get" ) do %>
 <%= text_field_tag( :latitude , nil, options={:class =>'field' , :placeholder => 'latitude numbers only'} )  %>
 <%= text_field_tag( :longitude , nil, options={:class =>'field' , :placeholder => 'longitude numbers only'} )  %>
 <%= text_field_tag( :message , nil,  options={:class =>'field', :placeholder => 'message short text only 20ch', :maxlength => 20} )  %>
 <%= submit_tag("Mark!" , id:"submit") %>
+<% end %>
 
+<div id="gmap"></div>
 
-<div id="map"></div>
+<%= javascript_include_tag "maps" %>
+<%= javascript_include_tag "https://maps.googleapis.com/maps/api/js?key=#{Figaro.env.google_api_key}&callback=myMap", :defer => "defer" , async: true %>
 
-<%#= javascript_include_tag "maps" %>
-<script>
-	
-	function initMap() {
-		function myMap() {
-			var mapProp= {
-				center:new google.maps.LatLng(51.508742,-0.120850),
-				zoom:5,
-			};
-			var map=new google.maps.Map(document.getElementById("googleMap"),mapProp);
-		}
-	}
-</script>
-
-
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyABEDu_IR2D2u6nkWNHEwjCaCYYx3LMwPk&callback=initMap" async defer></script>
+<!-- remplace le 
+<script src="https://maps.googleapis.com/maps/api/js?key=<%=Figaro.env.google_api_key%>&callback=myMap" async defer></script>
+-->

@@ -15,14 +15,14 @@ class MapsController < ApplicationController
 	end
 
 	def default_map
-		@map.latitude = 45 # default value
-		@map.longitude = 0 # default value
-		@map.message = 'default marker' # default value
+		# @map.latitude = 45 # default value
+		# @map.longitude = 0 # default value
+		# @map.message = 'default marker' # default value
 	end
 
-	def param_maps
-		# [:latitude, :longitude] équivaut à %i[latitude longitude]
-		params.permit(map: %i[latitude longitude message])
-	end
+	# def param_maps
+	# 	# [:latitude, :longitude] équivaut à %i[latitude longitude]
+	# 	params.permit(map: %i[latitude longitude message])
+	# end
 end
 
