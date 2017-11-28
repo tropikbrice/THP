@@ -1,5 +1,5 @@
 <h1>Formulaire Twitter</h1>
 
-<%= form_tag "/", method: "get"  %>
+ <%= form_tag "/", method: "get"  %>
 	<%= text_field_tag( :tweet , 'tweet max 160', options={:maxlength => 160})  %>
 	<%= submit_tag(value = "Tweet") %>
