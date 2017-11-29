@@ -1,7 +1,20 @@
-function myMap() {
-	var mapProp= {
-		center:new google.maps.LatLng(51.508742,-0.120850),
-		zoom:3,
-	};
-	var map=new google.maps.Map(document.getElementById("gmap"),mapProp);
+// cf https://www.w3schools.com/graphics/google_maps_events.asp
+function myMap(latitude, longitude) {
+	var mapProp= new google.maps.LatLng( latitude , longitude );
+
+	var map=new google.maps.Map(document.getElementById("gmap"),
+		{center: mapProp ,
+			zoom: 4});
+
+	// add marker
+	var marker = new google.maps.Marker({position: mapProp});
+	marker.setMap(map);
+
+	// add message when clicking
+	var infowindow = new google.maps.InfoWindow({
+		content: '<%= @map.message%>'
+	});
+	google.maps.event.addListener(marker, 'click', function() {
+		infowindow.open(map,marker);
+	});
 }

@@ -61,3 +61,9 @@ rails g controller Maps index
 # bon j'ai un peu saute bcp de choses, en gros :
 # Asset was not declared to be precompiled in production.
 # Add `Rails.application.config.assets.precompile += %w( maps.js )` to `config/initializers/assets.rb` and restart your server
+
+# pour le cas des js : marker, event if clic, ...
+# cf https://www.w3schools.com/graphics/google_maps_events.asp
+
+# faut creer un modele pour stocker donnees lat long message !
+rails generate model Map

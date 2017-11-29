@@ -10,7 +10,7 @@
 <div id="gmap"></div>
 
 <%= javascript_include_tag "maps" %>
-<%= javascript_include_tag "https://maps.googleapis.com/maps/api/js?key=#{Figaro.env.google_api_key}&callback=myMap", :defer => "defer" , async: true %>
+<%= javascript_include_tag "https://maps.googleapis.com/maps/api/js?key=#{Figaro.env.google_api_key}&callback=myMap(#{@map.latitude} , #{@map.longitude})", :defer => "defer" , async: true %>
 
 <!-- remplace le 
 <script src="https://maps.googleapis.com/maps/api/js?key=<%=Figaro.env.google_api_key%>&callback=myMap" async defer></script>
