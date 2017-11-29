@@ -2,7 +2,7 @@ require 'pry'
 
 class MapsController < ApplicationController
 	def index
-		@map = Map.new
+		@map = Map.new()
 
 		return unless param_maps[:map] && param_maps[:map][:latitude] && param_maps[:map][:longitude] && param_maps[:map][:message]
 		@map.latitude = param_maps[:map][:latitude]
